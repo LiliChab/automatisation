@@ -2,7 +2,7 @@ version: '2'
 
 services:
   backend:
-    container-name: backend
+    container_name: backend
     build: ./backend/
     restart: always
     ports:
@@ -17,7 +17,7 @@ services:
     # - servicecalcul
 
   frontend:
-    container-name: frontend
+    container_name: frontend
     build: ./frontend/
     restart: always
     volumes:
@@ -28,7 +28,7 @@ services:
       - network-app
 
   serviceio:
-    container-name: serviceio
+    container_name: serviceio
     build: ./serviceio/
     restart: always
     ports:
