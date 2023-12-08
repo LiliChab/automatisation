@@ -35,6 +35,7 @@ services:
       - 4000:4000
     volumes:
       - ./serviceio:/app
+      - ./backend/fichiers:/app/fichiers
     networks:
       - network-io
 
