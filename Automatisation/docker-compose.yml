@@ -9,7 +9,8 @@ services:
     volumes:
       - ./backend:/var/www/html
     networks:
-      - mynetwork
+      - network-io
+      - network-app
     depends_on:
       - serviceio
     # - servicecalcul
@@ -22,7 +23,7 @@ services:
     ports:
       - 80:80
     networks:
-      - mynetwork
+      - network-app
 
   serviceio:
     build: ./serviceio/
@@ -32,8 +33,7 @@ services:
     volumes:
       - ./serviceio:/app
     networks:
-      - mynetwork
-
+      - network-io
 
   # servicecalcul:
   #   build: ./servicecalcul/
@@ -47,5 +47,7 @@ services:
 
 
 networks:
-  mynetwork:
+  network-app:
+  network-io:
+  network-calcul:
 
