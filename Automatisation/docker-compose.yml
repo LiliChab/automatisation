@@ -1,0 +1,51 @@
+version: '2'
+
+services:
+  backend:
+    build: ./backend/
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ./backend:/var/www/html
+    networks:
+      - mynetwork
+    depends_on:
+      - serviceio
+    # - servicecalcul
+
+  frontend:
+    build: ./frontend/
+    restart: always
+    volumes:
+      - ./frontend:/var/www/html
+    ports:
+      - 80:80
+    networks:
+      - mynetwork
+
+  serviceio:
+    build: ./serviceio/
+    restart: always
+    ports:
+      - 4000:4000
+    volumes:
+      - ./serviceio:/app
+    networks:
+      - mynetwork
+
+
+  # servicecalcul:
+  #   build: ./servicecalcul/
+  #   restart: always
+  #   ports:
+  #     - 5000:80
+  #   volumes:
+  #     - ./servicecalcul:/app
+  #   networks:
+  #     - mynetwork
+
+
+networks:
+  mynetwork:
+

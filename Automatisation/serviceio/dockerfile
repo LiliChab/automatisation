@@ -1,0 +1,19 @@
+# Utilisez l'image de base .NET Core 7.0
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /app
+
+# Copiez les fichiers nécessaires pour restaurer les dépendances
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copiez tout le reste et construisez l'application
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Utilisez une image plus légère pour exécuter l'application
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/out .
+
+
+EXPOSE 4000
