@@ -1,72 +1,59 @@
-﻿using System;
+
+              using System;
 using System.IO;
-using System.Net.Http;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace ServiceIO
 {
     class Program
     {
-        static async Task Main()
+        static async Task Main(string[] args)
         {
-            // Chemin du fichier CSV
-            string csvFilePath = "index.cs";
-
-            // Vérifier si le fichier existe
-            if (File.Exists(csvFilePath))
-            {
-                // Lire toutes les lignes du fichier CSV
-                string[] lines = File.ReadAllLines(csvFilePath);
-
-                // Vérifier si le fichier contient des données
-                if (lines.Length > 0)
-                {
-                    // Créer un tableau pour stocker les lignes du fichier CSV
-                    string[] csvData = new string[lines.Length];
-
-                    // Afficher le contenu du fichier ligne par ligne
-                    for (int i = 0; i < lines.Length; i++)
-                    {
-                        // Diviser la ligne en colonnes en utilisant la virgule comme délimiteur
-                        string[] columns = lines[i].Split(',');
-
-                        // Stocker chaque colonne dans le tableau csvData
-                        csvData[i] = string.Join("\t", columns);
-                    }
-
-                    // Envoyer les données à la page PHP
-                    await SendDataToPHP(csvData);
-
-                    Console.WriteLine("Données envoyées avec succès à la page PHP.");
-                }
-                else
-                {
-                    Console.WriteLine("Le fichier CSV est vide.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Le fichier CSV n'existe pas.");
-            }
-
-            Console.ReadLine();
+            // Code pour effectuer des tâches ou attendre des requêtes
+            // Vous pouvez ajouter votre logique ici
+            await WaitForHttpPost();
         }
 
-        static async Task SendDataToPHP(string[] csvData)
+        static async Task WaitForHttpPost()
         {
-            // URL de votre fichier PHP sur le serveur local
-            string phpUrl = "http://localhost:8080/index.php";
+            HttpListener listener = new HttpListener();
+            listener.Prefixes.Add("http://localhost:8080/");
+            listener.Start();
 
-            // Convertir le tableau en une seule chaîne pour l'envoi
-            string postData = string.Join(",", csvData);
+            Console.WriteLine("En attente de la requête HTTP POST...");
 
-            // Créer une requête HTTP POST
-            using (HttpClient client = new HttpClient())
+            while (true)
             {
-                var content = new StringContent("data=" + postData); // Modifier la clé 'data' en fonction de votre traitement dans le fichier PHP
-                var response = await client.PostAsync(phpUrl, content);
-                response.EnsureSuccessStatusCode();
+                HttpListenerContext context = await listener.GetContextAsync();
+                HttpListenerRequest request = context.Request;
+
+                // Lire le nom du fichier à partir du corps de la requête
+                using (StreamReader reader = new StreamReader(request.InputStream))
+                {
+                    string fileName = await reader.ReadToEndAsync();
+                    Console.WriteLine($"Nom de fichier reçu : {fileName}");
+
+                    // Vous pouvez maintenant traiter le fichier ou effectuer toute autre logique nécessaire
+                    // Exemple : lecture du fichier CSV
+                    string csvFilePath = $"../backend/fichiers/{fileName}";
+
+                    if (File.Exists(csvFilePath))
+                    {
+                        // Lire et traiter le fichier ici
+                        Console.WriteLine($"Lecture du fichier : {csvFilePath}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Le fichier n'existe pas : {csvFilePath}");
+                    }
+                }
+
+                // Vous pouvez également ajouter une pause ou d'autres conditions pour contrôler le comportement
             }
+
+            // Arrêter le listener
+            // listener.Stop();
         }
     }
 }
