@@ -1,5 +1,5 @@
-# Utilisez l'image de base .NET Core 7.0
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+# Utilisez l'image Bitnami du SDK .NET
+FROM bitnami/dotnet-sdk:7 AS build
 WORKDIR /app
 
 # Copiez les fichiers nécessaires pour restaurer les dépendances
@@ -10,10 +10,12 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Utilisez une image plus légère pour exécuter l'application
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS runtime
+# Utilisez l'image Bitnami du SDK .NET pour exécuter l'application
+FROM bitnami/dotnet-sdk:7 AS runtime
 WORKDIR /app
 COPY --from=build /app/out .
 
-
 EXPOSE 4000
+
+# Démarrez l'application
+ENTRYPOINT ["dotnet", "bin/Debug/net7.0/serviceio.dll"]
