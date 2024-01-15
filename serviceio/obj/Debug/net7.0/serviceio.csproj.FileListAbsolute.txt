@@ -1,0 +1,17 @@
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/serviceio.csproj.AssemblyReference.cache
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/serviceio.GeneratedMSBuildEditorConfig.editorconfig
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/serviceio.AssemblyInfoInputs.cache
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/serviceio.AssemblyInfo.cs
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/serviceio.csproj.CoreCompileInputs.cache
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/bin/Debug/net7.0/serviceio
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/bin/Debug/net7.0/serviceio.deps.json
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/bin/Debug/net7.0/serviceio.runtimeconfig.json
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/bin/Debug/net7.0/serviceio.dll
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/bin/Debug/net7.0/serviceio.pdb
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/serviceio.dll
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/refint/serviceio.dll
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/serviceio.pdb
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/serviceio.genruntimeconfig.cache
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/ref/serviceio.dll
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/bin/Debug/net7.0/CsvHelper.dll
+/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/obj/Debug/net7.0/serviceio.csproj.CopyComplete

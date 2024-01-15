@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "VXY/DcQvJMbGYYeSqyunSfzN/bw6iemgvZ1aRpC15vEHASJMTmb57M60VigK0pX2Wf8jr7Qkx0VqwlYBeg4Iew==",
+  "success": true,
+  "projectFilePath": "/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/serviceio.csproj",
+  "expectedPackageFiles": [
+    "/Users/elisechabeniuk/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
