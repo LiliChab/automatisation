@@ -41,6 +41,10 @@
             "CsvHelper": {
               "target": "Package",
               "version": "[30.0.1, )"
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "target": "Package",
+              "version": "[7.0.0-*, )"
             }
           },
           "imports": [
@@ -55,6 +59,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

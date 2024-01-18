@@ -45,7 +45,8 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "CsvHelper >= 30.0.1"
+      "CsvHelper >= 30.0.1",
+      "Microsoft.AspNetCore.Razor.Design >= 7.0.0-*"
     ]
   },
   "packageFolders": {
@@ -88,6 +89,10 @@
           "CsvHelper": {
             "target": "Package",
             "version": "[30.0.1, )"
+          },
+          "Microsoft.AspNetCore.Razor.Design": {
+            "target": "Package",
+            "version": "[7.0.0-*, )"
           }
         },
         "imports": [
@@ -102,6 +107,9 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
@@ -109,5 +117,16 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1102",
+      "level": "Error",
+      "message": "Package Microsoft.AspNetCore.Razor.Design avec la version (>= 7.0.0) introuvable\n  - Version(s) 14 trouvée(s) dans nuget.org [version la plus proche : 2.2.0]",
+      "libraryId": "Microsoft.AspNetCore.Razor.Design",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

@@ -31,9 +31,7 @@ services:
   serviceio:
     container_name: serviceio
     build: ./serviceio/
-    restart: always
-    ports:
-      - 4000:4000
+    #restart: always
     volumes:
       - ./serviceio:/app
       - ./fichiers:/app/fichiers
