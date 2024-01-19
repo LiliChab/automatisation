@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $etudiantsData = @file_get_contents($apiUrl);
 
     if ($etudiantsData !== false) {
-        // Convertissez les données JSON en tableau associatif
         echo $etudiantsData;
     }else{
+        // si la connexion ne marche pas avec le c#, envoie des données d'exemple
         echo json_encode([
             [
                 'Nom' => 'Frido',

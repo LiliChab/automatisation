@@ -122,16 +122,15 @@
         body: formData,
       });
 
-      // Afficher un message de succès
+      // Message de succès
       uploadStatus.textContent = 'Fichier envoyé avec succès!';
 
-      // Ajoutez ce code pour afficher la section des étudiants
       document.getElementById('etudiantsContainer').style.display = 'block';
 
       const etudiants = await getEtudiants();
       
       // Appelez la fonction pour afficher les étudiants
-      afficherEtudiants(etudiants); // utiliser la variable etudiants si la connexion entre le service c# et backend marche
+      afficherEtudiants(etudiants); 
     });
 
     // Fonction pour récupérer les données du service C#
