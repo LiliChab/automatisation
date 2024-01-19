@@ -15,5 +15,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/out .
 
+EXPOSE 4000
 # Démarrez l'application directement
 CMD ["dotnet", "bin/Debug/net7.0/serviceio.dll"]

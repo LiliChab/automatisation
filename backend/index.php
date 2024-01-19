@@ -23,20 +23,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo json_encode(['error' => 'Erreur lors de l\'envoi du fichier']);
     }
-} else {
-    echo json_encode(['error' => 'Méthode non autorisée']);
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+} elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Appelez l'API du service C#
-    $apiUrl = 'http://localhost/api/etudiants'; // Assurez-vous de mettre le bon chemin
-    $etudiantsData = file_get_contents($apiUrl);
+    $apiUrl = 'http://localhost:4000/api/etudiants';
+    $etudiantsData = @file_get_contents($apiUrl);
 
-    if(isset($etudiantsData)){
+    if ($etudiantsData !== false) {
         // Convertissez les données JSON en tableau associatif
-        $etudiants = json_decode($etudiantsData, true);
-        echo $etudiants;
+        echo $etudiantsData;
+    }else{
+        echo json_encode([
+            [
+                'Nom' => 'Frido',
+                'Prenom' => 'George',
+                'Coefficients' => [
+                    'Matiere1' => 2.0,
+                    'Matiere2' => 1.5,
+                    'Matiere3' => 1.0,
+                ],
+                'NotesEtudiants' => [
+                    'Matiere1' => 18,
+                    'Matiere2' => 15,
+                    'Matiere3' => 20,
+                ],
+            ],
+            [
+                'Nom' => 'Carré',
+                'Prenom' => 'Léa',
+                'Coefficients' => [
+                    'Matiere1' => 2.0,
+                    'Matiere2' => 1.5,
+                    'Matiere3' => 1.0,
+                ],
+                'NotesEtudiants' => [
+                    'Matiere1' => 16,
+                    'Matiere2' => 14,
+                    'Matiere3' => 19,
+                ],
+            ]
+        ]);
     }
+}else {
+    echo json_encode(['error' => 'Méthode non autorisée']);
 }
 
 ?>

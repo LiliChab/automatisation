@@ -129,20 +129,22 @@
       document.getElementById('etudiantsContainer').style.display = 'block';
 
       const etudiants = await getEtudiants();
+      
       // Appelez la fonction pour afficher les étudiants
-      afficherEtudiants(exemple); // utiliser la variable etudiants si la connexion entre le service c# et backend marche
+      afficherEtudiants(etudiants); // utiliser la variable etudiants si la connexion entre le service c# et backend marche
     });
 
     // Fonction pour récupérer les données du service C#
     async function getEtudiants() {
-      apiUrl="http://localhost:8080/index.php";
+      apiUrl = "http://localhost:8080/index.php";
       try {
         const response = await fetch(apiUrl, {
-          method: 'POST',
+          method: 'GET',
         });
         const etudiants = await response.json();
         return etudiants;
       } catch (error) {
+
         console.error('Erreur lors de la récupération des données:', error);
         return null;
       }
@@ -185,38 +187,6 @@
       tableContainer.innerHTML = '';
       tableContainer.appendChild(table);
     }
-
-    // Exemple de données récupérées dans le backend
-    const exemple = [
-      {
-        Nom: 'Frido',
-        Prenom: 'George',
-        Coefficients: {
-          Matiere1: 2.0,
-          Matiere2: 1.5,
-          Matiere3: 1.0,
-        },
-        NotesEtudiants: {
-          Matiere1: 18,
-          Matiere2: 15,
-          Matiere3: 20,
-        },
-      },
-      {
-        Nom: 'Carré',
-        Prenom: 'Léa',
-        Coefficients: {
-          Matiere1: 2.0,
-          Matiere2: 1.5,
-          Matiere3: 1.0,
-        },
-        NotesEtudiants: {
-          Matiere1: 16,
-          Matiere2: 14,
-          Matiere3: 19,
-        },
-      }
-    ];
     
 </script>
 </body>
