@@ -26,3 +26,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo json_encode(['error' => 'Méthode non autorisée']);
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    // Appelez l'API du service C#
+    $apiUrl = 'http://localhost/api/etudiants'; // Assurez-vous de mettre le bon chemin
+    $etudiantsData = file_get_contents($apiUrl);
+
+    if(isset($etudiantsData)){
+        // Convertissez les données JSON en tableau associatif
+        $etudiants = json_decode($etudiantsData, true);
+        echo $etudiants;
+    }
+}
+
+?>

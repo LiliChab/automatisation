@@ -44,7 +44,7 @@
             },
             "Microsoft.AspNetCore.Razor.Design": {
               "target": "Package",
-              "version": "[7.0.0-*, )"
+              "version": "[2.2.0, )"
             }
           },
           "imports": [

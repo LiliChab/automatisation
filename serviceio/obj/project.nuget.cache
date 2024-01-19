@@ -1,20 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "wyZ2BdD9KwkNyAIgHYqtuYVwkQH4WOzUg44w/n2oI8LcrGGM4Ys1/MJe0DU81w7uG+zgm6clFzw1cOrjVhhu1A==",
-  "success": false,
+  "dgSpecHash": "O66g1Q6y3GpH2GwMcYQT85ZGnAH2rMofl+djAcgXQGHgPkTcMsfQ/z+2SC2hNCE3UgfkVeI4hsad+NAyvAD4LQ==",
+  "success": true,
   "projectFilePath": "/Users/elisechabeniuk/Documents/BUT3/Automatisation/serviceio/serviceio.csproj",
   "expectedPackageFiles": [
-    "/Users/elisechabeniuk/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512"
+    "/Users/elisechabeniuk/.nuget/packages/csvhelper/30.0.1/csvhelper.30.0.1.nupkg.sha512",
+    "/Users/elisechabeniuk/.nuget/packages/microsoft.aspnetcore.razor.design/2.2.0/microsoft.aspnetcore.razor.design.2.2.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1102",
-      "level": "Error",
-      "message": "Package Microsoft.AspNetCore.Razor.Design avec la version (>= 7.0.0) introuvable\n  - Version(s) 14 trouvée(s) dans nuget.org [version la plus proche : 2.2.0]",
-      "libraryId": "Microsoft.AspNetCore.Razor.Design",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  "logs": []
 }

@@ -11,17 +11,19 @@
       margin: 0;
       padding: 0;
       display: flex;
+      flex-direction: column; /* Change to column layout */
       align-items: center;
       justify-content: center;
       height: 100vh;
     }
 
-    #uploadContainer {
+    #uploadContainer, #etudiantsContainer { /* Separate container for the table */
       background-color: #fff;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
+      margin-bottom: 20px; /* Add margin to separate the sections */
     }
 
     h1 {
@@ -54,6 +56,25 @@
       background-color: #ccc;
       cursor: not-allowed;
     }
+
+    table {
+
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px; /* Add margin to separate the sections */
+      overflow-x: auto; /* Add horizontal scrollbar if needed */
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -69,6 +90,15 @@
 
     <p id="uploadStatus"></p>
   </div>
+
+  <div id="etudiantsContainer" style="display: none;">
+  <h1>Liste des étudiants</h1>
+  
+  <div id="table-container">
+    </div>
+
+</div>
+
 
   <script>
     const fileInput = document.getElementById('fileInput');
@@ -94,7 +124,100 @@
 
       // Afficher un message de succès
       uploadStatus.textContent = 'Fichier envoyé avec succès!';
+
+      // Ajoutez ce code pour afficher la section des étudiants
+      document.getElementById('etudiantsContainer').style.display = 'block';
+
+      const etudiants = await getEtudiants();
+      // Appelez la fonction pour afficher les étudiants
+      afficherEtudiants(exemple); // utiliser la variable etudiants si la connexion entre le service c# et backend marche
     });
-  </script>
+
+    // Fonction pour récupérer les données du service C#
+    async function getEtudiants() {
+      apiUrl="http://localhost:8080/index.php";
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+        });
+        const etudiants = await response.json();
+        return etudiants;
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données:', error);
+        return null;
+      }
+    }
+
+    function afficherEtudiants(etudiants) {
+      const table = document.createElement('table');
+      const headerRow = table.insertRow();
+      const nomHeaderCell = document.createElement('th');
+      const prenomHeaderCell = document.createElement('th');
+      nomHeaderCell.textContent = 'Nom';
+      headerRow.appendChild(nomHeaderCell);
+      prenomHeaderCell.textContent = 'Prénom';
+      headerRow.appendChild(prenomHeaderCell);
+      const subjects = Object.keys(etudiants[0].Coefficients);
+
+      subjects.forEach(subject => {
+        const noteHeaderCell = document.createElement('th');
+        noteHeaderCell.textContent = `${subject} (Note)`;
+        headerRow.appendChild(noteHeaderCell);
+
+        const coefficientHeaderCell = document.createElement('th');
+        coefficientHeaderCell.textContent = `${subject} (Coefficient)`;
+        headerRow.appendChild(coefficientHeaderCell);
+      });
+
+
+      etudiants.forEach(student => {
+        const row = table.insertRow();
+        row.insertCell().textContent = student.Nom;
+        row.insertCell().textContent = student.Prenom;
+
+        subjects.forEach(subject => {
+          row.insertCell().textContent = student.NotesEtudiants[subject];
+          row.insertCell().textContent = student.Coefficients[subject];
+        });
+      });
+
+      const tableContainer = document.getElementById('table-container');
+      tableContainer.innerHTML = '';
+      tableContainer.appendChild(table);
+    }
+
+    // Exemple de données récupérées dans le backend
+    const exemple = [
+      {
+        Nom: 'Frido',
+        Prenom: 'George',
+        Coefficients: {
+          Matiere1: 2.0,
+          Matiere2: 1.5,
+          Matiere3: 1.0,
+        },
+        NotesEtudiants: {
+          Matiere1: 18,
+          Matiere2: 15,
+          Matiere3: 20,
+        },
+      },
+      {
+        Nom: 'Carré',
+        Prenom: 'Léa',
+        Coefficients: {
+          Matiere1: 2.0,
+          Matiere2: 1.5,
+          Matiere3: 1.0,
+        },
+        NotesEtudiants: {
+          Matiere1: 16,
+          Matiere2: 14,
+          Matiere3: 19,
+        },
+      }
+    ];
+    
+</script>
 </body>
 </html>

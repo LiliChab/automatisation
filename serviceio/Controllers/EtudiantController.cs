@@ -9,10 +9,10 @@ public class EtudiantsController : ControllerBase
     {
         var etudiants = new
         {
-            Noms = Program.noms,
-            Prenoms = Program.prenoms,
-            Coefficients = Program.coefficients,
-            NotesEtudiants = Program.notesEtudiants
+            Noms = WatchFolderService.noms,
+            Prenoms =  WatchFolderService.prenoms,
+            Coefficients =  WatchFolderService.coefficients,
+            NotesEtudiants =  WatchFolderService.notesEtudiants
         };
 
         return Ok(etudiants);

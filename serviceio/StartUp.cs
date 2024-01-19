@@ -16,6 +16,8 @@ public class Startup
                            .AllowAnyHeader();
                 });
         });
+
+        services.AddHostedService<WatchFolderService>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
