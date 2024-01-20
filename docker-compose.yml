@@ -13,9 +13,6 @@ services:
     networks:
       - network-io
       - network-app
-    #depends_on:
-     # - serviceio
-    # - servicecalcul
 
   frontend:
     container_name: frontend
@@ -38,15 +35,16 @@ services:
     networks:
       - network-io
 
-  # servicecalcul:
-  #   build: ./servicecalcul/
-  #   restart: always
-  #   ports:
-  #     - 5000:80
-  #   volumes:
-  #     - ./servicecalcul:/app
-  #   networks:
-  #     - mynetwork
+  python-app:
+    build:
+      context: ./python
+      dockerfile: dockerfile.python
+    ports:
+      - 8081:82
+    depends_on:
+      - backend
+    networks:
+      - network-app
 
 
 networks:
