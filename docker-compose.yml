@@ -44,7 +44,7 @@ services:
     build: ./serviceio/
     restart: always
     ports:
-      - 4000:4000
+      - 82:80
     volumes:
       - ./serviceio:/app
       - ./fichiers:/app/fichiers

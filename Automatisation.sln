@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "serviceio", "serviceio\serviceio.csproj", "{A07B7325-CF41-4DCA-A07A-AA7734595787}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "serviceio", "serviceio", "{6E7B97E8-7E3D-4EE1-B631-F91F679241FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.Docker", "serviceio\App\DotNet.Docker.csproj", "{910DBB82-9236-41EE-BAD2-B83D142A8A2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A07B7325-CF41-4DCA-A07A-AA7734595787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A07B7325-CF41-4DCA-A07A-AA7734595787}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A07B7325-CF41-4DCA-A07A-AA7734595787}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A07B7325-CF41-4DCA-A07A-AA7734595787}.Release|Any CPU.Build.0 = Release|Any CPU
+		{910DBB82-9236-41EE-BAD2-B83D142A8A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{910DBB82-9236-41EE-BAD2-B83D142A8A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{910DBB82-9236-41EE-BAD2-B83D142A8A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{910DBB82-9236-41EE-BAD2-B83D142A8A2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{910DBB82-9236-41EE-BAD2-B83D142A8A2E} = {6E7B97E8-7E3D-4EE1-B631-F91F679241FE}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {544066C2-CDB5-4150-832A-F257DE5A0196}
+		SolutionGuid = {CB838AF1-91BD-4913-A5F8-2DC991259973}
 	EndGlobalSection
 EndGlobal
