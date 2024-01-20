@@ -30,13 +30,11 @@ services:
 
   serviceio:
     container_name: serviceio
-    build: ./serviceio/
-    restart: always
+    build: ./serviceio/App/
     ports:
-      - 4000:4000
+      - 82:80
     volumes:
-      - ./serviceio:/app
-      - ./fichiers:/app/fichiers
+      - ./fichiers:/App/fichiers
     networks:
       - network-io
 

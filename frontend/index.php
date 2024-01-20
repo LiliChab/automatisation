@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestionnaire de notes</title>
   <style>
+    .coefficients-header {
+            background-color: #4CAF50;
+            color: white;
+        }
+
     body {
       font-family: 'Arial', sans-serif;
       background-color: #f4f4f4;
@@ -129,8 +134,8 @@
 
       const etudiants = await getEtudiants();
       
-      // Appelez la fonction pour afficher les étudiants
-      afficherEtudiants(etudiants); 
+      // Afficher le tableau dans la div avec l'id "etudiantsTable"
+      document.getElementById('etudiantsContainer').innerHTML = afficherEtudiants(etudiants);
     });
 
     // Fonction pour récupérer les données du service C#
@@ -149,43 +154,48 @@
       }
     }
 
-    function afficherEtudiants(etudiants) {
-      const table = document.createElement('table');
-      const headerRow = table.insertRow();
-      const nomHeaderCell = document.createElement('th');
-      const prenomHeaderCell = document.createElement('th');
-      nomHeaderCell.textContent = 'Nom';
-      headerRow.appendChild(nomHeaderCell);
-      prenomHeaderCell.textContent = 'Prénom';
-      headerRow.appendChild(prenomHeaderCell);
-      const subjects = Object.keys(etudiants[0].Coefficients);
 
-      subjects.forEach(subject => {
-        const noteHeaderCell = document.createElement('th');
-        noteHeaderCell.textContent = `${subject} (Note)`;
-        headerRow.appendChild(noteHeaderCell);
+    function afficherEtudiants(data) {
+      var table = '<table border="1">';
+        table += '<tr><th>Noms</th><th>Prénoms</th>';
 
-        const coefficientHeaderCell = document.createElement('th');
-        coefficientHeaderCell.textContent = `${subject} (Coefficient)`;
-        headerRow.appendChild(coefficientHeaderCell);
-      });
+        // Ajouter des colonnes pour chaque note
+        for (var i = 0; i < data.coefficients.length; i++) {
+            table += '<th>Note ' + (i + 1) + '</th>';
+        }
 
+        table += '</tr>';
 
-      etudiants.forEach(student => {
-        const row = table.insertRow();
-        row.insertCell().textContent = student.Nom;
-        row.insertCell().textContent = student.Prenom;
+        for (var i = 0; i < data.noms.length; i++) {
+            table += '<tr>';
+            table += '<td>' + data.noms[i] + '</td>';
+            table += '<td>' + data.prenoms[i] + '</td>';
 
-        subjects.forEach(subject => {
-          row.insertCell().textContent = student.NotesEtudiants[subject];
-          row.insertCell().textContent = student.Coefficients[subject];
-        });
-      });
+            // Ajouter chaque note dans une colonne distincte
+            for (var j = 0; j < data.notesEtudiants[i].length; j++) {
+                table += '<td>' + data.notesEtudiants[i][j] + '</td>';
+            }
 
-      const tableContainer = document.getElementById('table-container');
-      tableContainer.innerHTML = '';
-      tableContainer.appendChild(table);
+            table += '</tr>';
+        }
+
+        // Ajouter une ligne vide
+        table += '<tr></tr>';
+
+        // Ajouter les coefficients dans la dernière ligne, en dessous des notes
+        // Ajouter la ligne pour les coefficients
+        table += '<tr class="coefficients-header"><td colspan="2">Coefficients</td>';
+        for (var i = 0; i < data.coefficients.length; i++) {
+            table += '<td>' + data.coefficients[i] + '</td>';
+        }
+        table += '</tr>';
+
+        table += '</table>';
+        return table;
     }
+
+    
+
     
 </script>
 </body>

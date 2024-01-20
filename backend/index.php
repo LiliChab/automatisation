@@ -25,8 +25,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Appelez l'API du service C#
-    $apiUrl = 'http://localhost:4000/api/etudiants';
-    $etudiantsData = @file_get_contents($apiUrl);
+    $apiUrl = 'http://serviceio:80/api/etudiants';
+    // Utiliser cURL pour effectuer la requête HTTP
+    $ch = curl_init($apiUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    
+    $etudiantsData = curl_exec($ch);
+    
+    if (curl_errno($ch)) {
+        // Gérer les erreurs de cURL ici
+        $errorData = [
+            'error' => 'Erreur cURL',
+            'curl_error' => curl_error($ch),
+            'server_response' => $etudiantsData,
+        ];
+        echo json_encode($errorData);
+        
+    } else {
+        // Traiter les données renvoyées par l'API
+        $etudiants = json_decode($etudiantsData, true);
+    }
+
+    curl_close($ch);
 
     if ($etudiantsData !== false) {
         echo $etudiantsData;
