@@ -130,7 +130,7 @@
       const etudiants = await getEtudiants();
       
       // Appelez la fonction pour afficher les étudiants
-      afficherMoyennes(moyennesData); 
+      afficherEtudiants(etudiants); 
     });
 
     // Fonction pour récupérer les données du service C#
