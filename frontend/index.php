@@ -130,7 +130,7 @@
       const etudiants = await getEtudiants();
       
       // Appelez la fonction pour afficher les étudiants
-      afficherEtudiants(etudiants); 
+      afficherMoyennes(moyennesData); 
     });
 
     // Fonction pour récupérer les données du service C#
@@ -186,21 +186,23 @@
       tableContainer.innerHTML = '';
       tableContainer.appendChild(table);
     }
-    
+    // Fonction pour afficher les moyennes
+
+
 </script>
 <?php
 // Utilisation de PHP pour récupérer les données de l'API et les afficher
 
 // Effectuez une requête GET à l'API
-$api_url = 'http://python-app:82/api/moyennes';
+$api_url = 'http://backend:80/api/moyennes';
 $response = file_get_contents($api_url);
 
 // Vérifiez si la requête a réussi
 if ($response === FALSE) {
     echo 'Erreur lors de la récupération des données de l\'API.';
 } else {
-    // Convertissez la réponse JSON en tableau associatif
-    $data = json_decode($response, true);
+   // Convertissez la réponse JSON en tableau associatif
+   $data = json_decode($response, true);
 
     // Manipulez les données récupérées ici
     echo '<h2>Moyennes:</h2>';

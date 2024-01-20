@@ -34,6 +34,29 @@ $app->get('/api/data', function (Request $request, Response $response) use ($coe
     $response->getBody()->write(json_encode($data));
     return $response->withHeader('Content-Type', 'application/json');
 });
+$app->get('/api/moyennes', function (Request $request, Response $response) {
+    // Appelez l'API de moyennes en utilisant file_get_contents
+    $apiUrl = 'http://python-app:82/api/moyennes';
+    $moyennesData = @file_get_contents($apiUrl);
+
+    if ($moyennesData !== false) {
+        // Utilisez getBody()->write() pour écrire le contenu dans le corps de la réponse
+        $response->getBody()->write($moyennesData);
+
+        // Définissez le type de contenu et le code de statut appropriés
+        return $response->withHeader('Content-Type', 'application/json')
+                        ->withStatus(200);
+    } else {
+        // Retournez une réponse d'erreur au format JSON
+        $response->getBody()->write(json_encode(['error' => 'Erreur lors de la récupération des moyennes']));
+
+        // Définissez le type de contenu et le code de statut appropriés
+        return $response->withHeader('Content-Type', 'application/json')
+                        ->withStatus(500);
+    }
+});
+
+
 
 // Chemin où vous souhaitez enregistrer les fichiers uploadés
 $uploadDirectory = '/var/www/html/fichiers/';
