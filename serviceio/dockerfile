@@ -1,0 +1,20 @@
+# Utilisez l'image officielle Microsoft .NET SDK pour construire l'application
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /app
+
+# Copiez les fichiers nécessaires pour restaurer les dépendances
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copiez tout le reste et construisez l'application
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Utilisez l'image officielle Microsoft ASP.NET Core Runtime pour exécuter l'application
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/out .
+
+EXPOSE 4000
+# Démarrez l'application directement
+CMD ["dotnet", "bin/Debug/net7.0/serviceio.dll"]

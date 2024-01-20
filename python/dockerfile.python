@@ -1,0 +1,15 @@
+# Dockerfile.python
+FROM python:3.8-slim
+
+WORKDIR /app
+
+# Copiez le script Python dans le conteneur
+COPY app.py .
+
+# Installez les dépendances
+RUN pip install requests
+RUN pip install Flask
+
+
+# Commande par défaut pour exécuter le script Python
+CMD ["python", "app.py"]

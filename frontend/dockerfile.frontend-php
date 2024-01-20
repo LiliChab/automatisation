@@ -1,0 +1,15 @@
+# Utilisez l'image PHP avec Apache
+FROM php:apache
+
+# Activez le module Apache pour les requêtes HTTP
+RUN a2enmod rewrite
+
+# Copiez les fichiers de l'application dans le conteneur
+COPY . /var/www/html
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Exposez le port 80 pour les requêtes HTTP
+EXPOSE 80
+
+# Démarrez Apache lorsque le conteneur est lancé
+CMD ["apache2-foreground"]

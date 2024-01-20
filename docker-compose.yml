@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    volumes:
+      - ./fichiers:/var/www/html/fichiers   
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      - network-app
+      - network-io  # Ajout du réseau utilisé par serviceio
+
+  python-app:
+    build:
+      context: ./python
+      dockerfile: dockerfile.python
+    ports:
+      - 8081:82
+    depends_on:
+      - backend
+    networks:
+      - network-app
+      
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: dockerfile.frontend-php
+    volumes:
+      - ./frontend:/var/www/html  
+    restart: always  
+    ports:
+      - 80:80
+    networks:
+      - network-app
+
+  serviceio:
+    container_name: serviceio
+    build: ./serviceio/
+    restart: always
+    ports:
+      - 4000:4000
+    volumes:
+      - ./serviceio:/app
+      - ./fichiers:/app/fichiers
+    networks:
+      - network-io
+
+networks:
+  network-app:
+  network-io:
